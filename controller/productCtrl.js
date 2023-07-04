@@ -14,6 +14,9 @@ const createProduct = asyncHandler(async (req, res) => {
   } catch (error) {
     throw new Error(error);
   }
+  // res.json({
+  //   message: "Heyyyyy",
+  // });
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
@@ -45,9 +48,11 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 const getaProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   validateMongoDbId(id);
   try {
-    const findProduct = await Product.findById(id);
+    const findProduct = await Product.findById(id).populate("color");
+    // console.log("findProduct" + findProduct);
     res.json(findProduct);
   } catch (error) {
     throw new Error(error);

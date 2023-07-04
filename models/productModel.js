@@ -24,15 +24,16 @@ var productSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: true,
+      required: false,
     },
     brand: {
       type: String,
-      required: true,
+      required: false,
+      enum: ["Apple", "Samsung", "Xiomi", "OnePlus"],
     },
     quantity: {
       type: Number,
-      required: true,
+      required: false,
     },
     sold: {
       type: Number,
@@ -44,7 +45,12 @@ var productSchema = new mongoose.Schema(
         url: String,
       },
     ],
-    color: [],
+    color: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Color",
+      },
+    ],
     tags: String,
     ratings: [
       {

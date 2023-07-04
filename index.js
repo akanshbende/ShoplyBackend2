@@ -17,8 +17,8 @@ const couponRouter = require("./routes/couponRoute");
 const uploadRouter = require("./routes/uploadRoute");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-const cors = require("cors");
 
+const cors = require("cors");
 dbConnect();
 app.use(morgan("dev"));
 app.use(cors());
