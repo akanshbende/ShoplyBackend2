@@ -407,6 +407,51 @@ const updateProductQuantityFromCart = asyncHandler(async (req, res) => {
   }
 });
 
+const createOrder = asyncHandler(async (req, res) => {
+  const {
+    shippingInfo,
+    orderItems,
+    totalPrice,
+    totalPriceAfterDiscount,
+    paymentInfo,
+  } = req.body;
+  // console.log(body);
+
+  const { _id } = req.user;
+  console.log(_id);
+  // validateMongoDbId(_id);
+  try {
+    const order = await Order.create({
+      shippingInfo,
+      orderItems,
+      totalPrice,
+      totalPriceAfterDiscount,
+      paymentInfo,
+      user: _id,
+    });
+    res.json({ order, success: true });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const getMyOrders = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+
+  try {
+    const orders = await Order.find({ user: _id })
+      .populate("user")
+      .populate("orderItems.product")
+      .populate("orderItems.color");
+
+    res.json({ orders });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+//--------------------------------------------------------------------------
+
 const emptyCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   validateMongoDbId(_id);
@@ -441,34 +486,6 @@ const applyCoupon = asyncHandler(async (req, res) => {
     { new: true }
   );
   res.json(totalAfterDiscount);
-});
-
-const createOrder = asyncHandler(async (req, res) => {
-  const {
-    shippingInfo,
-    orderItems,
-    totalPrice,
-    totalPriceAfterDiscount,
-    paymentInfo,
-  } = req.body;
-  // console.log(body);
-
-  const { _id } = req.user;
-  console.log(_id);
-  // validateMongoDbId(_id);
-  try {
-    const order = await Order.create({
-      shippingInfo,
-      orderItems,
-      totalPrice,
-      totalPriceAfterDiscount,
-      paymentInfo,
-      user: _id,
-    });
-    res.json({ order, success: true });
-  } catch (error) {
-    throw new Error(error);
-  }
 });
 
 const getOrders = asyncHandler(async (req, res) => {
@@ -530,6 +547,30 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   }
 });
 
+const updateUser = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+  // console.log(_id);
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      _id,
+      {
+        firstname: req?.body?.firstname,
+        lastname: req?.body?.lastname,
+        email: req?.body?.email,
+        mobile: req?.body?.mobile,
+      },
+
+      { new: true }
+    );
+    console.log(updatedUser);
+    res.json(updatedUser);
+    // console.log(res.json(updatedUser));
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = {
   createUser,
   loginUserCtrl,
@@ -553,10 +594,12 @@ module.exports = {
   applyCoupon,
   createOrder,
   getOrders,
+  getMyOrders,
   updateOrderStatus,
   getAllOrders,
   getOrderByUserId,
   removeProductFromCart,
   updateProductQuantityFromCart,
   createOrder,
+  updateUser,
 };
