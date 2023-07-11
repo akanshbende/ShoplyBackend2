@@ -301,7 +301,7 @@ const forgotPasswordToken = asyncHandler(async (req, res) => {
   try {
     const token = await user.createPasswordResetToken();
     await user.save();
-    const resetURL = `Hi, Please follow this link to reset Your Password. This link is valid till 10 minutes from now. <a href='http://localhost:5000/api/user/reset-password/${token}'>Click Here</>`;
+    const resetURL = `Hi, Please follow this link to reset Your Password. This link is valid till 10 minutes from now. <a href='http://127.0.0.1:5173/reset-password/${token}'>Click Here</a>`;
     const data = {
       to: email,
       text: "Hey User",
@@ -323,6 +323,7 @@ const resetPassword = asyncHandler(async (req, res) => {
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() },
   });
+  console.log(user);
   if (!user) throw new Error(" Token Expired, Please try again later");
   user.password = password;
   user.passwordResetToken = undefined;
