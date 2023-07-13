@@ -29,7 +29,6 @@ var productSchema = new mongoose.Schema(
     brand: {
       type: String,
       required: false,
-      enum: ["Apple", "Samsung", "Xiomi", "OnePlus"],
     },
     quantity: {
       type: Number,
@@ -41,7 +40,7 @@ var productSchema = new mongoose.Schema(
     },
     images: [
       {
-        public_id: String,
+        type: String,
         url: String,
       },
     ],
@@ -69,3 +68,4 @@ var productSchema = new mongoose.Schema(
 
 //Export the model
 module.exports = mongoose.model("Product", productSchema);
+// enum: ["Apple", "Samsung", "Xiomi", "OnePlus"],
