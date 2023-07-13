@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 mongoose.set("strictQuery", false);
-const source = "mongodb://localhost:27017/ShoplyDB?directConnection=true";
+const source = "mongodb://127.0.0.1:27017/ShoplyDB?directConnection=true";
 console.log(source);
 const dbConnect = () => {
   try {
