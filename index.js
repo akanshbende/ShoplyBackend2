@@ -25,9 +25,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/", (req, res) => {
-  res.send("Hello From Shoply's Server Side");
-});
+
 app.use("/api/user", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/blog", blogRouter);
@@ -41,6 +39,9 @@ app.use("/api/upload", uploadRouter);
 
 app.use(notFound);
 app.use(errorHandler);
+app.use("/", (req, res) => {
+  res.send("Hello From Shoply's Server Side");
+});
 app.listen(PORT, () => {
   console.log(`Server is running  at PORT ${PORT}`);
 });
