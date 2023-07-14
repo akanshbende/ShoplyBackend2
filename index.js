@@ -37,7 +37,7 @@ app.use("/api/coupon", couponRouter);
 app.use("/api/color", colorRouter);
 app.use("/api/enquiry", enqRouter);
 app.use("/api/upload", uploadRouter);
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello From Shoply's Server Side");
 });
 app.use(notFound);
