@@ -1,7 +1,6 @@
 const { default: mongoose } = require("mongoose");
 mongoose.set("strictQuery", false);
-const source =
-  "mongodb+srv://AdminAkansh:Admin@cluster0.qxhvacg.mongodb.net/ShplyDB";
+const source = "mongodb+srv://AdminAkansh:Admin@cluster0.qxhvacg.mongodb.net/";
 // process.env.MONGODB_URL
 
 // console.log(source);
