@@ -5,12 +5,7 @@ const source =
 // console.log(source);
 const dbConnect = () => {
   try {
-    const conn = mongoose.connect(source, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useUnifiedTop010gy: true,
-      useFindAndModify: false,
-    });
+    const conn = mongoose.connect(source, {});
     console.log("Database Connected Successfully");
   } catch (error) {
     console.log("DAtabase error");
