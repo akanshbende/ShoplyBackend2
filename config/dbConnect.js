@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 mongoose.set("strictQuery", false);
 const source = "mongodb+srv://AdminAkansh:Admin@cluster0.qxhvacg.mongodb.net/";
+
 // console.log(source);
 const dbConnect = () => {
   try {
