@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 mongoose.set("strictQuery", false);
 const source =
-  "mongodb+srv://brimwDQtRLM2tFV0:asbende@29@clusterakansh.734wjwt.mongodb.net/ShoplyDB";
+  "mongodb+srv://asbende29:HgkagbcVdF4utUyn@clusterakansh.734wjwt.mongodb.net/?retryWrites=true&w=majority";
 // console.log(source);
 const dbConnect = () => {
   try {
