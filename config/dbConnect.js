@@ -7,7 +7,9 @@ const dbConnect = () => {
   try {
     const conn = mongoose.connect(source, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useUnifiedTop010gy: true,
+      useFindAndModify: false,
     });
     console.log("Database Connected Successfully");
   } catch (error) {
