@@ -5,9 +5,7 @@ const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const app = express();
 const dotenv = require("dotenv").config();
 const PORT = process.env.PORT || 4000;
-app.use("/", (req, res) => {
-  res.send("Hello From Shoply's Server Side");
-});
+
 const authRouter = require("./routes/authRoute");
 const productRouter = require("./routes/productRoute");
 const blogRouter = require("./routes/blogRoute");
@@ -39,7 +37,9 @@ app.use("/api/coupon", couponRouter);
 app.use("/api/color", colorRouter);
 app.use("/api/enquiry", enqRouter);
 app.use("/api/upload", uploadRouter);
-
+app.use("/", (req, res) => {
+  res.send("Hello From Shoply's Server Side");
+});
 app.use(notFound);
 app.use(errorHandler);
 
