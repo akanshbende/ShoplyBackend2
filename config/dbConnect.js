@@ -1,7 +1,6 @@
 const { default: mongoose } = require("mongoose");
 mongoose.set("strictQuery", false);
-const source =
-  "mongodb+srv://asbende29:AkanshBende@clusterakansh.734wjwt.mongodb.net/?retryWrites=true&w=majority";
+const source = "mongodb+srv://AdminAkansh:Admin@cluster0.qxhvacg.mongodb.net/";
 // console.log(source);
 const dbConnect = () => {
   try {
